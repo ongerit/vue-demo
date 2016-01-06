@@ -3,16 +3,31 @@
 var gulp = require('gulp'),
 sass = require('gulp-sass'),
 compass = require('gulp-compass'),
-livereload= require('gulp-livereload');
+livereload= require('gulp-livereload'),
+webserver = require('gulp-webserver');
 
 
 livereload({ start:true})
 
-gulp.task('default',['sass','compass'], function(){
+gulp.task('default',['sass','compass','webserver'], function(){
 //gulp tasks
 	
 
 });
+
+
+//WEBSERVER
+
+gulp.task('webserver',function(){
+	gulp.src('../vue-demo')
+		.pipe(webserver({
+			livereload:true,
+			directoryListing: true,
+			open:true
+		}));
+		
+});
+
 
 
 //SASS
@@ -60,6 +75,9 @@ gulp.task('watch', function () {
     });
 
 });
+
+
+
 
 
 
